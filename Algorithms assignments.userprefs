@@ -1,0 +1,14 @@
+﻿<Properties StartupItem="EntryPoint/EntryPoint.csproj" StartupConfiguration="{8FB4DEF4-B952-495D-A589-27CDA2A952D6}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="EntryPoint/Program.cs">
+    <Files>
+      <File FileName="EntryPoint/Program.cs" Line="24" Column="1" />
+      <File FileName="Main/Game.fs" Line="21" Column="42" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.EntryPoint PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
