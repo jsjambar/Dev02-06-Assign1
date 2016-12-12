@@ -138,18 +138,19 @@ namespace EntryPoint
 
 
 
-    private static IEnumerable<IEnumerable<Vector2>> FindSpecialBuildingsWithinDistanceFromHouse(
+    private static List<List<Vector2>> FindSpecialBuildingsWithinDistanceFromHouse(
       IEnumerable<Vector2> specialBuildings, 
       IEnumerable<Tuple<Vector2, float>> housesAndDistances)
     {
 			// Re-wrote it so I can understand what the fuck is even happening.
-			IEnumerable<Vector2> closeB;
+			List<List<Vector2>> closeB = new List<List<Vector2>>();
 
 			Console.WriteLine(specialBuildings);
 			Console.WriteLine(housesAndDistances);
 
 			foreach (var distance in housesAndDistances)
 			{
+				List<Vector2> currentB = new List<Vector2>();
 				foreach (var special in specialBuildings)
 				{
 					var calcedDistance = calcDistance(distance.Item1, special);
@@ -157,18 +158,21 @@ namespace EntryPoint
 
 					if (calcedDistance <= distance.Item2)
 					{
-						Console.WriteLine("Found one..");
+						currentB.Add(special);
 					}
-				}
-					
-			}
 
-      return
+					closeB.Add(currentB);
+				}
+			}
+			// Gotta fix this return..
+			return closeB;
+
+      /*return
           from h in housesAndDistances
           select
             from s in specialBuildings
 						where Vector2.Distance(h.Item1, s) <= h.Item2
-            select s;
+            select s;*/
     }
 
     private static IEnumerable<Tuple<Vector2, Vector2>> FindRoute(Vector2 startingBuilding, 
