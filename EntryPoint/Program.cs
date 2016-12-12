@@ -122,16 +122,52 @@ namespace EntryPoint
 		}
 
 
+		public static float calcDistance(Vector2 uno, Vector2 dos)
+		{
+			var xDist = dos.X - uno.X;
+			xDist = xDist * xDist;
+
+			var yDist = dos.Y - uno.Y;
+			yDist = yDist * yDist;
+
+			var sumDist = xDist + yDist;
+			float distance = (float)Math.Sqrt(sumDist);
+
+			return distance;
+		}
+
+
 
     private static IEnumerable<IEnumerable<Vector2>> FindSpecialBuildingsWithinDistanceFromHouse(
       IEnumerable<Vector2> specialBuildings, 
       IEnumerable<Tuple<Vector2, float>> housesAndDistances)
     {
+			// Re-wrote it so I can understand what the fuck is even happening.
+			IEnumerable<Vector2> closeB;
+
+			Console.WriteLine(specialBuildings);
+			Console.WriteLine(housesAndDistances);
+
+			foreach (var distance in housesAndDistances)
+			{
+				foreach (var special in specialBuildings)
+				{
+					var calcedDistance = calcDistance(distance.Item1, special);
+					//Console.WriteLine("Berekend: "+calcedDistance+"... Eigen huis: "+distance.Item2);
+
+					if (calcedDistance <= distance.Item2)
+					{
+						Console.WriteLine("Found one..");
+					}
+				}
+					
+			}
+
       return
           from h in housesAndDistances
           select
             from s in specialBuildings
-            where Vector2.Distance(h.Item1, s) <= h.Item2
+						where Vector2.Distance(h.Item1, s) <= h.Item2
             select s;
     }
 
